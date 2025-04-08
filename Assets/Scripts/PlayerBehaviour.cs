@@ -22,6 +22,10 @@ public class PlayerBehaviour : MonoBehaviour
     private bool _isJumping;
     private GameBehaviour _gameManager;
 
+    public delegate void JumpingEvent();
+
+    public event JumpingEvent playerJump;
+
 
     void Start()
     {
@@ -51,14 +55,16 @@ public class PlayerBehaviour : MonoBehaviour
 
         if(IsGrounded() && _isJumping)
         {
-            _rb.AddForce(Vector3.up * JumpVelocity, ForceMode.Impulse);    
+            _rb.AddForce(Vector3.up * JumpVelocity, ForceMode.Impulse);
+            Debug.Log(playerJump == null);
+            if (playerJump != null) playerJump();
         }
 
         Vector3 rotation = Vector3.up * _hInput;
 
         Quaternion angleRot = Quaternion.Euler(rotation * Time.fixedDeltaTime);
 
-        _rb.MovePosition(this.transform.position + this.transform.forward * _vInput * Time.fixedDeltaTime);
+        _rb.MovePosition(this.transform.position + this.transform.forward * (_vInput * Time.fixedDeltaTime));
 
         _rb.MoveRotation(_rb.rotation * angleRot);
         

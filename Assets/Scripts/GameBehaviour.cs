@@ -21,6 +21,11 @@ public class GameBehaviour : MonoBehaviour, IManager
     private int _itemsCollected = 0;
     private int _playerHP = 10;
     private string _state;
+    
+    public delegate void DebugDelegate(string newText);
+    public DebugDelegate debug = Print;
+    
+    public PlayerBehaviour playerBehaviour;
 
     public string State
     {
@@ -41,15 +46,58 @@ public class GameBehaviour : MonoBehaviour, IManager
 
     public void Initialize()
     {
+        var itemShop = new Shop<Collectible>();
+        
+        
+        itemShop.AddItem(new Potion());
+        itemShop.AddItem(new Antidote());
+        
+        Debug.Log("There are " + itemShop.inventory.Count + " items for sale");
+        Debug.Log("There are " + itemShop.GetStockCount<Potion>() + " potions for sale");
+        
         _state = "Game Manager Initialized..";
-        _state.FancyDebug();
-        Debug.Log(_state);
+        //_state.FancyDebug();
+        //Debug.Log(_state);
 
         LootStack.Push(new Loot("Sword of Doom", 5));
         LootStack.Push(new Loot("HP Boost", 1));
         LootStack.Push(new Loot("Golden Key", 3));
         LootStack.Push(new Loot("Pair of Winged Boots", 2));
         LootStack.Push(new Loot("Mythril Bracer", 4));
+        
+        debug(_state);
+
+        LogWithDelegate(debug);
+    }
+
+    void OnEnable()
+    {
+        GameObject player = GameObject.Find("Player");
+        playerBehaviour = player.GetComponent<PlayerBehaviour>();
+        playerBehaviour.playerJump += HandlePlayerJump;
+    }
+
+    void OnDisable()
+    {
+        playerBehaviour.playerJump -= HandlePlayerJump;
+        debug("Jump event disabled");
+    }
+
+    // ReSharper disable Unity.PerformanceAnalysis
+    private void HandlePlayerJump()
+    {
+        Debug.Log("Player jumped");
+    }
+
+    public void LogWithDelegate(DebugDelegate del)
+    {
+        del("Delegating the debug Task");
+        
+    }
+
+    public static void Print(string newText)
+    {
+        Debug.Log(newText);
     }
 
     void UpdateScene(string updatedText)
@@ -119,5 +167,7 @@ public class GameBehaviour : MonoBehaviour, IManager
     {
         return loot.Rarity >= 3;
     }
+    
+    
 }
  

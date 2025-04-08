@@ -463,6 +463,7 @@ MonoBehaviour:
   HealthText: {fileID: 405082277}
   ItemText: {fileID: 1119256029}
   ProgressText: {fileID: 39368966}
+  playerBehaviour: {fileID: 0}
 --- !u!4 &190838982
 Transform:
   m_ObjectHideFlags: 0
@@ -1259,6 +1260,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &768143245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 768143247}
+  - component: {fileID: 768143246}
+  m_Layer: 0
+  m_Name: Data_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &768143246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768143245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b1a0cd7bffc5e40a63e17e2638af8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &768143247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768143245}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.943192, y: -13.810915, z: 5.5760612}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &829655992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,14 +1591,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.043396115, y: 0.95622116, z: -0.19034317, w: 0.21800776}
-  m_LocalPosition: {x: -7.46, y: 4.11, z: 12.11}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -7.22, y: 2.7, z: 11.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 22.516, y: 154.313, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1571,6 +1616,9 @@ MonoBehaviour:
   HasSecretIncantation: 0
   RareItem: The Amulet
   Dice: 7
+  HuntingBow:
+    Name: Hunting Bow
+    Damage: 105
   DirectionalLight: {fileID: 705507993}
   LightTransform: {fileID: 0}
   CamTransform: {fileID: 0}
